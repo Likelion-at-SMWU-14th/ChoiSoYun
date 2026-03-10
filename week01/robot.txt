@@ -1,1 +1,2 @@
 robot 오른팔
+robot 왼팔
