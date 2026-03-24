@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>로그인</title>
+</head>
+<body>
+    <div>
+        <header>
+            <div>
+                <img src ="./images/icon.svg" />
+                <h2>회원가입하기</h2>
+            </div>
+            <a href="./login.html">
+                <img src="./images/icon.svg" />
+            <a><img src ="./images/out.svg" /></a>
+        </header>
+        <form name="signup" method="post">
+            <section>
+                <span>이름</span>
+                <input name="first_name" type="text" placeholder = "김멋사" autocomplete="off" />
+            </section>
+            <section>
+                <span>아이디</span>
+                <input type="text" name="username" placeholder = "아이디를 입력해주세요" autocomplete="off" />
+            </section>
+            <section>
+                <span>비밀번호</span>
+                <input type="password" name="password1" placeholder = "비밀번호를 입력해주세요" autocomplete="new-password"  />
+            </section>
+            <section>
+                 <span>비밀번호 확인</span>
+                <input type="password" name="password2" placeholder = "비밀번호를 다시 입력해주세요" autocomplete="new-password"  />
+            </section>
+            <button type="submit">회원가입하기</button>
+        </form>
+    </div>
+</body>
+</html>
