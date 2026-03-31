@@ -13,9 +13,6 @@ def signup(request):
 
     return render(request, 'signup.html', {'form': form})
 
-# Create your views here.
-
-
 def login(request):
     if request.method == "POST":
         username = request.POST['username']
@@ -27,3 +24,6 @@ def login(request):
             return redirect('main')
         
     return render(request, 'login.html')
+
+def main(request):
+    return render(request, "main.html")
