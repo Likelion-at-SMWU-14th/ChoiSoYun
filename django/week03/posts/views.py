@@ -121,6 +121,7 @@ class class_view2(ListView):
 
 
 def home_view(request):
+    return render(request, "home.html")
     context = {
         "name" : "lion"
     }

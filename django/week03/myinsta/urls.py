@@ -13,9 +13,10 @@ urlpatterns = [
     path('fbv/', function_view),
     path('cbv/', class_view.as_view()),
     path('cbv2/', class_view2.as_view()),
-    path('',home_view),
+    path('',home_view, name='home'),
 
     path('posts/', include('posts.urls', namespace='posts')),
+    path('accounts/', include('accounts.urls', namespace='accounts')),
 ]
 
 if settings.DEBUG:
