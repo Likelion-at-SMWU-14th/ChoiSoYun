@@ -4,6 +4,8 @@ from django.conf import settings
 from django.conf.urls.static import static
 from posts.views import function_view, url_view, url_parameter_view, class_view,class_view2, home_view
 
+
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('url/', url_view),
@@ -13,7 +15,8 @@ urlpatterns = [
     path('cbv2/', class_view2.as_view()),
     path('',home_view),
 
-    path('posts/', include('posts.urls', namespace='posts'))
+    path('posts/', include('posts.urls', namespace='posts')),
 ]
 
-urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
