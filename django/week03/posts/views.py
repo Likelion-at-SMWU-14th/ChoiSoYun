@@ -33,12 +33,16 @@ def comment_update_view(request, post_id, comment_id):
 
 def comment_create_view(request, id):
     post = Post.objects.get(id=id)
+
     if request.method == "POST":
         form = CommentModelForm(request.POST)
         if form.is_valid():
             comment = form.save(commit=False)
             comment.post = post
-            comment.writer = request.user
+            if request.user.is_authenticated:
+                comment.writer = request.user
+            else:
+                comment.writer = None
             comment.save()
     return redirect('posts:post-detail', id=post.id)
 

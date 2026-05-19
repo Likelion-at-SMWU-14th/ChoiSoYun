@@ -37,7 +37,8 @@
 
     {% for comment in post.comment_set.all %}
         <p>
-            작성자 - {{ comment.writer }}</p>
+            작성자 - {{ comment.writer }}
+        </p>
 
         <p>
             {{ comment.content }}
@@ -46,6 +47,10 @@
         <p>
             {{ comment.created_at }}
         </p>
+
+        <a href="{% url 'posts:comment-update' post.id comment.id %}">
+            댓글 수정
+        </a>
 
         <hr>
     {% endfor %}
