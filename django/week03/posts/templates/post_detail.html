@@ -6,14 +6,48 @@
     <title>게시글 상세페이지</title>
 </head>
 <body>
-    <h1>{{ post.content }}</h1> 
+    <h1>{{ post.content }}</h1>
+
     <p>작성자 - {{ post.writer }}</p>
     <p>작성일 - {{ post.created_at }}</p>
 
     {% if post.image %}
-        <img src="{{ post.image.url }}" alt = "Post Image">
+        <img src="{{ post.image.url }}" alt="Post Image">
     {% else %}
         <p>이미지가 없습니다.</p>
     {% endif %}
+
+    <hr>
+
+    <h3>댓글 작성</h3>
+
+    <form method="POST" action="{% url 'posts:comment-create' post.id %}">
+        {% csrf_token %}
+
+        <textarea name="content"></textarea>
+
+        <button type="submit">
+            댓글 작성
+        </button>
+    </form>
+
+    <hr>
+
+    <h3>댓글 목록</h3>
+
+    {% for comment in post.comment_set.all %}
+        <p>
+            작성자 - {{ comment.writer }}</p>
+
+        <p>
+            {{ comment.content }}
+        </p>
+
+        <p>
+            {{ comment.created_at }}
+        </p>
+
+        <hr>
+    {% endfor %}
 </body>
 </html>

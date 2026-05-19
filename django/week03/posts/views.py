@@ -2,10 +2,45 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.http import  HttpResponse, JsonResponse
 from django.views import View
 from django.views.generic import ListView
-from .models import Post
-from .forms import PostBasedForm, PostModelForm
+from .models import Post, Comment
+from .forms import PostBasedForm, PostModelForm, CommentModelForm
 
 # Create your views here.
+
+def comment_update_view(request, post_id, comment_id):
+    post = Post.objects.get(id=post_id)
+    comment = Comment.objects.get(id=comment_id)
+
+    if request.method == "GET":
+        form = CommentModelForm(instance=comment)
+        context = {
+            'form': form,
+            'post': post,
+            'comment': comment,
+        }
+        return render(request, 'comment_update.html', context)
+    else:
+        form = CommentModelForm(request.POST, instance=comment)
+        if form.is_valid():
+            form.save()
+            return redirect('posts:post-detail', id=post.id)
+        context = {
+            'form': form,
+            'post': post,
+            'comment': comment,
+        }
+        return render(request, 'comment_update.html', context)
+
+def comment_create_view(request, id):
+    post = Post.objects.get(id=id)
+    if request.method == "POST":
+        form = CommentModelForm(request.POST)
+        if form.is_valid():
+            comment = form.save(commit=False)
+            comment.post = post
+            comment.writer = request.user
+            comment.save()
+    return redirect('posts:post-detail', id=post.id)
 
 def post_delete_view(request, id):
     post = get_object_or_404(Post, id=id)
