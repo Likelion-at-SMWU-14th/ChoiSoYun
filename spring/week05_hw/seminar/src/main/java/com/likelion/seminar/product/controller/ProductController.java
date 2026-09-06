@@ -1,10 +1,10 @@
 package com.likelion.seminar.product.controller;
 
+import com.likelion.seminar.product.dto.ProductCreateRequest;
 import com.likelion.seminar.product.dto.ProductResponse;
 import com.likelion.seminar.product.service.ProductService;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -16,6 +16,14 @@ public class ProductController {
 
     public ProductController(ProductService productService) {
         this.productService = productService;
+    }
+
+    @PostMapping
+    @ResponseStatus(HttpStatus.CREATED)
+    public ProductResponse create(
+            @RequestBody ProductCreateRequest request
+    ) {
+        return productService.create(request);
     }
 
     // [JPA] 가장 비싼 상품 Top10

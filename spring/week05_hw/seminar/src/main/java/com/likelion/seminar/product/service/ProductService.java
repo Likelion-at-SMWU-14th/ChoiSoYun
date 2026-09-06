@@ -1,5 +1,7 @@
 package com.likelion.seminar.product.service;
 
+import com.likelion.seminar.product.domain.Product;
+import com.likelion.seminar.product.dto.ProductCreateRequest;
 import com.likelion.seminar.product.dto.ProductResponse;
 import com.likelion.seminar.product.repository.ProductRepository;
 import org.springframework.data.domain.PageRequest;
@@ -19,6 +21,20 @@ public class ProductService {
         this.productRepository = productRepository;
     }
 
+    @Transactional
+    public ProductResponse create(ProductCreateRequest request) {
+
+        Product product = new Product(
+                request.name(),
+                request.price(),
+                request.stock()
+        );
+
+        Product savedProduct = productRepository.save(product);
+
+        return ProductResponse.from(savedProduct);
+    }
+
     // [JPA] 가장 비싼 상품 Top10
     public List<ProductResponse> findTop10ExpensiveProducts() {
         return productRepository.findTop10ByOrderByPriceDesc()
@@ -33,7 +49,10 @@ public class ProductService {
         Pageable pageable = PageRequest.of(0, 5);
 
         return productRepository
-                .findByPriceLessThanEqualOrderByStockDesc(2000, pageable)
+                .findByPriceLessThanEqualOrderByStockDesc(
+                        2000,
+                        pageable
+                )
                 .stream()
                 .map(ProductResponse::from)
                 .toList();
