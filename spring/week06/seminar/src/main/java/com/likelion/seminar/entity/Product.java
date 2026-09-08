@@ -6,7 +6,13 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
-@Entity@Getter@Setter@NoArgsConstructor
+import java.util.ArrayList;
+import java.util.List;
+
+@Entity
+@Getter
+@Setter
+@NoArgsConstructor
 
 public class Product extends com.likelion.seminar.entity.BaseEntity {
 
@@ -31,6 +37,11 @@ public class Product extends com.likelion.seminar.entity.BaseEntity {
     @ManyToOne
     @JoinColumn(name = "category_id")
     private Category category;
+
+    @ManyToMany
+    @ToString.Exclude
+    private List<Producer> producers = new ArrayList<>();
+
 
     public Product(String name, Integer price) {
         this.name = name;

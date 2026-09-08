@@ -4,6 +4,7 @@ import com.likelion.seminar.entity.Category;
 import com.likelion.seminar.entity.Product;
 import com.likelion.seminar.entity.Provider;
 import com.likelion.seminar.repository.CategoryRepository;
+import com.likelion.seminar.repository.ProductRepository;
 import com.likelion.seminar.repository.ProviderRepository;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
@@ -19,7 +20,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 class ProductMappingTest {
 
     @Autowired
-    private ProviderRepository productRepository;
+    private ProductRepository productRepository;
 
     @Autowired
     private ProviderRepository providerRepository;

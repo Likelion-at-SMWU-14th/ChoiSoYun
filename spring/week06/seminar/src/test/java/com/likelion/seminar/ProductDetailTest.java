@@ -3,6 +3,7 @@ package com.likelion.seminar;
 import com.likelion.seminar.entity.Product;
 import com.likelion.seminar.entity.ProductDetail;
 import com.likelion.seminar.repository.ProductDetailRepository;
+import com.likelion.seminar.repository.ProductRepository;
 import com.likelion.seminar.repository.ProviderRepository;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,7 +13,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 public class ProductDetailTest {
 
     @Autowired
-    ProviderRepository productRepository;
+    ProductRepository productRepository;
 
     @Autowired
     ProductDetailRepository productDetailRepository;
@@ -44,19 +45,20 @@ public class ProductDetailTest {
         ProductDetail savedDetail = productDetailRepository
                 .findById(productDetail.getId())
                 .orElseThrow();
+        Product savedProduct = savedDetail.getProduct();
+        System.out.println("Saved Product: " + savedProduct.getName());
+        System.out.println("Saved Product Description: " + savedDetail.getDescription());
 
         // TODO
         // savedDetail을 통해 연결된 Product를 조회
-        Product savedProduct = savedDetail.getProduct();
 
         Product findProduct = productRepository
                 .findById(product.getNumber())
-                        .orElseThrow();
+                .orElseThrow();
         ProductDetail findProductDetail = findProduct.getProductDetail();
 
         System.out.println("Product → ProductDetail: " + findProductDetail.getDescription());
-        System.out.println("Saved Product: " + savedProduct.getName());
-        System.out.println("Saved Product Description: " + savedDetail.getDescription());
+
 
 
     }

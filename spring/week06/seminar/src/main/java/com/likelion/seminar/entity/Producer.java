@@ -1,20 +1,21 @@
 package com.likelion.seminar.entity;
 
+
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.ToString;
+import tools.jackson.core.ObjectReadContext;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.CancellationException;
 
 @Entity
 @Getter
 @Setter
 @NoArgsConstructor
-
-public class Category extends BaseEntity {
+public class Producer extends BaseEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -22,11 +23,11 @@ public class Category extends BaseEntity {
 
     private String name;
 
-    @OneToMany(mappedBy = "category")
-    private List<Product> product = new ArrayList<>();
+    @ManyToMany(mappedBy = "producers")
+    @ToString.Exclude
+    private List<Product> products = new ArrayList<>();
 
-    public Category(String name) {
+    public Producer(String name) {
         this.name = name;
     }
-
 }
