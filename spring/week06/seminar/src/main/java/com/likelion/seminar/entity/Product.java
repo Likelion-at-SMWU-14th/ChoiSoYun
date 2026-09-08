@@ -24,6 +24,14 @@ public class Product extends com.likelion.seminar.entity.BaseEntity {
     @ToString.Exclude
     private ProductDetail productDetail;
 
+    @ManyToOne
+    @JoinColumn(name = "provider_id")
+    private Provider provider;
+
+    @ManyToOne
+    @JoinColumn(name = "category_id")
+    private Category category;
+
     public Product(String name, Integer price) {
         this.name = name;
         this.price = price;

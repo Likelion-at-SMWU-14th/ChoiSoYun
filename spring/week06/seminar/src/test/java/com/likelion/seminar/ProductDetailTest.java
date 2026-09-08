@@ -3,7 +3,7 @@ package com.likelion.seminar;
 import com.likelion.seminar.entity.Product;
 import com.likelion.seminar.entity.ProductDetail;
 import com.likelion.seminar.repository.ProductDetailRepository;
-import com.likelion.seminar.repository.ProductRepository;
+import com.likelion.seminar.repository.ProviderRepository;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -12,7 +12,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 public class ProductDetailTest {
 
     @Autowired
-    ProductRepository productRepository;
+    ProviderRepository productRepository;
 
     @Autowired
     ProductDetailRepository productDetailRepository;
