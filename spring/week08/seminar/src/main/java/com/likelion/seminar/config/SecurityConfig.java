@@ -1,4 +1,4 @@
-package com.example.seminar.config;
+package com.likelion.seminar.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
