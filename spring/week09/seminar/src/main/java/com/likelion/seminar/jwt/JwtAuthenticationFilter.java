@@ -38,7 +38,7 @@ public class JwtAuthenticationFilter
             String token =
                     authorizationHeader.substring(7);
 
-            if (jwtTokenProvider.validateToken(token)) {
+            if (jwtTokenProvider.validateAccessToken(token)) {
 
                 String email =
                         jwtTokenProvider.getEmail(token);

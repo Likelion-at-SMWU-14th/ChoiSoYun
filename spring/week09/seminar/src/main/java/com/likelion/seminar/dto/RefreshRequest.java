@@ -1,7 +1,6 @@
 package com.likelion.seminar.dto;
 
-public record TokenResponse(
-        String accessToken,
+public record RefreshRequest(
         String refreshToken
 ) {
 }
